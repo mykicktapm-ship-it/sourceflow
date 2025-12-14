@@ -9,9 +9,9 @@
   },
   "scripts": {
     "dev": "pnpm -r --parallel dev",
-    "build": "pnpm -r build",
+    "build": "pnpm -r --sort build",
     "lint": "pnpm -r lint",
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r --sort typecheck"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
