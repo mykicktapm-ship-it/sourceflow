@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": ".",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "jsx": "react-jsx",
     "types": ["vite/client"]
   },
