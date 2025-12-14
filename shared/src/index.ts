@@ -6,3 +6,4 @@ export * from "./schemas/order";
 export * from "./schemas/request";
 export * from "./schemas/catalog";
 export * from "./schemas/metrics";
+export * from "./schemas/health";
