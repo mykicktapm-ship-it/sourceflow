@@ -38,6 +38,9 @@ importers:
       fastify:
         specifier: ^4.28.1
         version: 4.29.1
+      shared:
+        specifier: workspace:*
+        version: link:../../shared
     devDependencies:
       '@types/node':
         specifier: ^20.14.11
