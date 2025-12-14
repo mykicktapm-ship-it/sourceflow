@@ -4,6 +4,7 @@
     "outDir": "dist",
     "rootDir": ".",
     "baseUrl": "./src",
+    "jsx": "react-jsx",
     "types": ["vite/client"]
   },
   "include": ["src", "vite.config.ts", "tailwind.config.ts"]
