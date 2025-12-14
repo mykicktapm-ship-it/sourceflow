@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { healthSchema, type Health } from "shared";
+import { HealthResponseSchema, type HealthResponse } from "shared";
 
 import { fetchJson } from "./lib/api";
 
@@ -7,7 +7,7 @@ const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
 type HealthStatus =
   | { status: "loading" }
-  | { status: "ok"; data: Health }
+  | { status: "ok"; data: HealthResponse }
   | { status: "error"; message: string };
 
 function App() {
@@ -18,7 +18,10 @@ function App() {
 
     const fetchHealth = async () => {
       try {
-        const data = await fetchJson<Health>(`${apiBaseUrl}/health`, healthSchema);
+        const data = await fetchJson<HealthResponse>(
+          `${apiBaseUrl}/health`,
+          HealthResponseSchema,
+        );
 
         if (!cancelled) {
           setHealth({ status: "ok", data });

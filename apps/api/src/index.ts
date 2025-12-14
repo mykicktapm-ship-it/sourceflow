@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import Fastify from 'fastify';
-import { healthSchema } from 'shared';
+import { HealthResponseSchema } from 'shared';
 
 const server = Fastify();
 
@@ -10,7 +10,7 @@ server.get('/health', async (request, reply) => {
     timestamp: new Date().toISOString(),
   };
 
-  const result = healthSchema.safeParse(payload);
+  const result = HealthResponseSchema.safeParse(payload);
 
   if (!result.success) {
     request.log.error({ err: result.error }, 'Health payload validation failed');
