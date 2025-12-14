@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { healthSchema, type Health } from "shared";
 
+import { fetchJson } from "./lib/api";
+
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
 type HealthStatus =
@@ -16,17 +18,10 @@ function App() {
 
     const fetchHealth = async () => {
       try {
-        const response = await fetch(`${apiBaseUrl}/health`);
-
-        if (!response.ok) {
-          throw new Error(`Request failed with status ${response.status}`);
-        }
-
-        const payload = await response.json();
-        const parsed = healthSchema.parse(payload);
+        const data = await fetchJson<Health>(`${apiBaseUrl}/health`, healthSchema);
 
         if (!cancelled) {
-          setHealth({ status: "ok", data: parsed });
+          setHealth({ status: "ok", data });
         }
       } catch (error) {
         if (!cancelled) {
