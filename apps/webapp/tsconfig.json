@@ -2,8 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": ".",
-    "baseUrl": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "shared": ["../../shared/src/index.ts"]
+    },
     "jsx": "react-jsx",
     "types": ["vite/client"]
   },
