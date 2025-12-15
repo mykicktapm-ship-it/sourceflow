@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { healthHttpContract, type HealthResponse } from "shared";
+import type { HealthResponse } from "shared";
 
-import { fetchContract } from "./lib/api";
+import { createHttpClient } from "./lib/api";
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
+const apiClient = createHttpClient(apiBaseUrl);
 
 type HealthStatus =
   | { status: "loading" }
@@ -18,7 +19,7 @@ function App() {
 
     const fetchHealth = async () => {
       try {
-        const data = await fetchContract(apiBaseUrl, healthHttpContract);
+        const data = await apiClient.health();
 
         if (!cancelled) {
           setHealth({ status: "ok", data });
