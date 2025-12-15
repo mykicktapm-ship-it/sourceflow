@@ -18,5 +18,16 @@ export default tseslint.config(
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn'
     }
+  },
+  {
+    files: ['apps/api/**/*.{ts,tsx}', 'apps/webapp/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['shared/src/*', 'shared/schemas/*', 'shared/contracts/*']
+        }
+      ]
+    }
   }
 );
