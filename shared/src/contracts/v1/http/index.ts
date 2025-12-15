@@ -1,4 +1,5 @@
 export * from "./health.contract";
+export * from "./types";
 
 // Future HTTP endpoints
 // export * from "./auth.contract";

@@ -1,14 +1,31 @@
-import type { ZodSchema } from "zod";
+import type { HttpContract, InferContractResponse } from "shared";
+import type { z } from "zod";
 
-export async function fetchJson<T>(url: string, schema: ZodSchema<T>): Promise<T> {
-  const response = await fetch(url);
+type AnyHttpContract = HttpContract<z.ZodTypeAny, z.ZodTypeAny>;
+
+export async function fetchContract<Contract extends AnyHttpContract>(
+  baseUrl: string,
+  contract: Contract,
+  requestData?: z.input<Contract["request"]>,
+): Promise<InferContractResponse<Contract>> {
+  const validatedRequest = contract.request.parse(requestData ?? {});
+
+  const response = await fetch(`${baseUrl}${contract.path}`, {
+    method: contract.method,
+    ...(contract.method !== "GET"
+      ? {
+          body: JSON.stringify(validatedRequest),
+          headers: { "Content-Type": "application/json" },
+        }
+      : {}),
+  });
 
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`);
   }
 
   const payload = await response.json();
-  const parsed = schema.safeParse(payload);
+  const parsed = contract.response.safeParse(payload);
 
   if (!parsed.success) {
     throw new Error("Response validation failed");
