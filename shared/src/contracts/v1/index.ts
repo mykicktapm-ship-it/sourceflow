@@ -8,7 +8,7 @@ export * from "./request.contract";
 export * from "./wallet.contract";
 
 // HTTP contracts (public API)
-export * from "./http/health.contract";
+export * from "./http";
 
 // Events (optional public API)
 export * from "./events/healthChecked.contract";
