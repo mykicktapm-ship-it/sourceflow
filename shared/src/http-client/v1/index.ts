@@ -1,10 +1,11 @@
+import type { z } from "zod";
+
 import {
   healthHttpContract,
   type HealthResponse,
   type HttpContract,
   type InferContractResponse,
-} from "shared";
-import type { z } from "zod";
+} from "../../contracts/v1";
 
 type AnyHttpContract = HttpContract<z.ZodTypeAny, z.ZodTypeAny>;
 
@@ -43,8 +44,7 @@ const createContractFetcher = (baseUrl: string) =>
   <Contract extends AnyHttpContract>(
     contract: Contract,
     requestData?: z.input<Contract["request"]>,
-  ) =>
-    fetchContract<Contract>(baseUrl, contract, requestData);
+  ) => fetchContract<Contract>(baseUrl, contract, requestData);
 
 export type HttpClient = {
   health: () => Promise<HealthResponse>;
