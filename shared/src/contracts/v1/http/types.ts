@@ -17,3 +17,5 @@ export type InferContractRequest<Contract extends HttpContract<z.ZodTypeAny, z.Z
 export type InferContractResponse<Contract extends HttpContract<z.ZodTypeAny, z.ZodTypeAny>> = z.infer<
   Contract["response"]
 >;
+
+export type AnyHttpContract = HttpContract<z.ZodTypeAny, z.ZodTypeAny>;
