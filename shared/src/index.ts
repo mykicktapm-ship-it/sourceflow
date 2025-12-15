@@ -10,5 +10,5 @@ export * from "./contracts/wallet";
 // HTTP contracts (public API)
 export * from "./contracts/http/health";
 
-// Events (если реально нужны наружу; если нет — потом можно убрать)
+// Events (optional public API)
 export * from "./contracts/events/healthChecked";
