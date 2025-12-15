@@ -5,7 +5,7 @@ export {
   positiveNumberSchema,
   timestampSchema,
   urlSchema,
-} from "../schemas/common";
+} from "../../schemas/common";
 
-export type { Identifier, Timestamp, Url } from "../schemas/common";
+export type { Identifier, Timestamp, Url } from "../../schemas/common";
 
