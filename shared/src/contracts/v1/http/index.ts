@@ -1,5 +1,6 @@
+export type { HttpContract, InferContractRequest, InferContractResponse } from "./types";
+export type { AnyHttpContract } from "./types";
 export * from "./health.contract";
-export * from "./types";
 
 // Future HTTP endpoints
 // export * from "./auth.contract";

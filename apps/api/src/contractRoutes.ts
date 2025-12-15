@@ -1,14 +1,13 @@
 import type { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
-import type { z } from 'zod';
-import type { HttpContract, InferContractRequest, InferContractResponse } from 'shared';
+import type { AnyHttpContract, InferContractRequest, InferContractResponse } from 'shared';
 
-export type ContractRouteHandler<Contract extends HttpContract<z.ZodTypeAny, z.ZodTypeAny>> = (params: {
+export type ContractRouteHandler<Contract extends AnyHttpContract> = (params: {
   request: FastifyRequest;
   reply: FastifyReply;
   validatedRequest: InferContractRequest<Contract>;
 }) => Promise<InferContractResponse<Contract>> | InferContractResponse<Contract>;
 
-export const registerHttpContractRoute = <Contract extends HttpContract<z.ZodTypeAny, z.ZodTypeAny>>({
+export const registerHttpContractRoute = <Contract extends AnyHttpContract>({
   server,
   contract,
   handler,
