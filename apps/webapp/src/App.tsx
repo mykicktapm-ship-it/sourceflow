@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import type { HealthResponse } from "shared";
-
-import { createHttpClient } from "./lib/api";
+import { createHttpClient, type HealthResponse } from "shared";
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 const apiClient = createHttpClient(apiBaseUrl);
